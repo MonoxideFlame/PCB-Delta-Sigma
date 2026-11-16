@@ -1,0 +1,39 @@
+.title KiCad schematic
+.save all
+.probe alli
+.probe p(V4)
+.probe p(C4)
+.probe p(R7)
+.probe p(C3)
+.probe p(V3)
+.probe p(R4)
+.probe p(V2)
+.probe p(R3)
+.probe p(V1)
+.probe p(R5)
+.probe p(R8)
+.probe p(C2)
+.probe p(R6)
+.probe p(R2)
+.probe p(R1)
+.probe p(C1)
+V4 Net-_U4-_LE_ 0 PULSE( 0 3.3 0 1n 1n 990n 1000n ) 
+U2 __U2
+U4 __U4
+U1 __U1
+C4 Net-_U2A-+IN_ Net-_U2A--FB_ 1n
+R7 Net-_U2A-+IN_ Net-_U4-_Q_ 10k
+C3 Net-_U1A-+IN_ Net-_U1A--FB_ 1n
+V3 INPUT 0 DC 1.6 SIN( 1.6 0.5 1k 0 0 0 ) AC 1  
+R4 Net-_U1A-VOCM_ Net-_U1A-+IN_ 33k
+V2 Net-_U1A-VOCM_ 0 DC 1.6 
+R3 Net-_U1A--IN_ INPUT 33k
+V1 Net-_U4-VCC_ 0 DC 3.3 
+R5 OUTPUT Net-_U1A--IN_ 10k
+R8 Net-_U1A-+IN_ Net-_U4-_Q_ 10k
+C2 Net-_U2A--IN_ Net-_U2A-+FB_ 1n
+R6 OUTPUT Net-_U2A--IN_ 10k
+R2 Net-_U1A-+OUT_ Net-_U2A-+IN_ 33k
+R1 Net-_U2A--IN_ Net-_U1A--OUT_ 33k
+C1 Net-_U1A--IN_ Net-_U1A-+FB_ 1n
+.end

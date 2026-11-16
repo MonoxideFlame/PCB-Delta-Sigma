@@ -1,0 +1,99 @@
+set dsn DELTA_SIGMA
+set pcb_size "6x9"
+set pcb_size ""
+
+set pcb_type double-sided
+set pcb_type single-sided
+set pcb_units mm
+set run_tw true
+
+twkicad::debug_draw on
+twkicad::debug off
+twkicad::debug on
+twkicad::pcb_type $pcb_type
+twgraphics on
+twkicad::via_bloat 0.3
+twkicad::read_design_files $dsn
+twkicad::create_defaults
+
+set smd_insts [twkicad::list_smd_insts]
+set plane1_parts ""
+set plane2_parts [twkicad::subtract_list $smd_insts $plane1_parts]
+twmessage imsg null "smd_insts: $plane2_parts\n"
+
+# twfix_instance set D1 FIXED {0 FROM CENTER 0.0 FROM BOTTOM} CELL_ORIGIN C B ORIENT 0
+
+proc create_fdo {filename} {
+  set f [open $filename "w"]
+  if {$f == ""} {
+    twmessage errmsg create_fdo "could not open file:$filename\n"
+    return 
+  }
+  # Created by tcl2grand from decoder_signal.fdo on Tue Dec 15 12:44:33 2020
+  puts $f ""
+  puts $f ""
+  puts $f "twwait"
+  puts $f "twfloorplan"
+  puts $f "twwait"
+  puts $f ""
+  puts $f ""
+  close $f
+}
+
+
+
+if {$pcb_size != ""} {
+  set core_size [split $pcb_size x]
+  set xdim [lindex $core_size 0]
+  set ydim [lindex $core_size 1]
+  # Kicad is in mm
+  if {$pcb_units != "mm"} {
+    set w [expr 25.4 * $xdim]
+    set h [expr 25.4 * $ydim]
+  } else {
+    set w $xdim
+    set h $ydim
+  }
+  twboundary set core [list 0 0 $w $h]
+  puts stderr "core: [twboundary core]"
+}
+
+if {1} {
+  icbackup_directory timberwolf
+  cd timberwolf
+  twwrite_par ${dsn}.par
+  twwrite_lib ${dsn}.lib
+  twwrite_ckt ${dsn}.ckt
+
+  twwrite_con ${dsn}.con
+  if {$pcb_type == "double-sided"} {
+    set fp [open ${dsn}.con a]
+    if {$fp != ""} {
+      foreach part $plane1_parts {
+	puts $fp "PLANE $part RESTRICT 1"
+      }
+      foreach part $plane2_parts {
+	puts $fp "PLANE $part RESTRICT 2"
+      }
+      close $fp
+    }
+  }
+  twkicad::create_ddo ${dsn}.ddo -special_spacing 0.20 -max_width 0.8
+  create_fdo ${dsn}.fdo
+  # twkicad::create_fdo ${dsn}.fdo
+}
+
+twgraphics_context design
+tweditobj sort
+set area [tweditobj bbox]
+if {$area != ""} {
+  twgraphics_context frame $area
+}
+twposition invert off
+twredraw
+twwait
+
+if {$run_tw} {
+  ::twkicad::run_tw $dsn
+  twexit 0
+}

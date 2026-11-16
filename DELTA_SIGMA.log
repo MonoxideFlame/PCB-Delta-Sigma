@@ -1,0 +1,34 @@
+####################################################
+time 1774557363 Thu Mar 26 15:36:03 2026:itranslate started...
+@ /Users/billswartz7/version1/itools/bin/Darwin-arm64/itranslate -w 6291545 -v -do /Users/billswartz7/version1/itools/bin/twkicad_results DELTA_SIGMA 
+@ /Users/billswartz7/version1/tests/pcb/dsm2/DELTA_SIGMA HOST mac6-2.local PID 69433 PVERSION v2.3.42
+[TWgraphics_init]:fix buggy Apple X11 server mode on
+% WARNING[init_parasitics]:Capacitance values cannot be normalized.
+   Timing driven placement cannot be performed only wire length minimization.
+   If you intent to run timing driven placement, please check the .par
+   file for layer capacitances equal to 0.0.
+
+[readpar]:floorplan/detail/DELTA_SIGMA.par read.
+no syntax errors in library:floorplan/detail/DELTA_SIGMA.lib
+Library file:floorplan/detail/DELTA_SIGMA.lib read successfully.
+
+
+[look_for_hints]:Found hints in <DELTA_SIGMA.stat> file
+[look_for_hints]:Number of insts:36
+[look_for_hints]:Number of nets :1000
+[look_for_hints]:Number of gpins:143
+
+no syntax problem in circuit file.
+Circuit file:floorplan/detail/DELTA_SIGMA.ckt read successfully.
+
+Constraint file:floorplan/detail/DELTA_SIGMA.con read successfully.
+
+[twread_con]:floorplan/detail/DELTA_SIGMA.con read.
+[icread_routing]:floorplan/detail/output/DELTA_SIGMA.rte read.
+[twread_kicad]:read ../DELTA_SIGMA.unpnr successfully
+
+itranslate terminated normally with no errors and 1 warning[s] (status arg:0 status:0 status given:0) 
+
+
+itranslate terminated abnormally with 7 error[s] and 15 warning[s] (status arg:0 status:1 status given:0) 
+

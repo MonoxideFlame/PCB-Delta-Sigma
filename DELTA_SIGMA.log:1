@@ -1,0 +1,42 @@
+####################################################
+time 1774555613 Thu Mar 26 15:06:53 2026:itranslate started...
+@ itranslate -v -do kicad.tdo DELTA_SIGMA 
+@ /Users/billswartz7/version1/tests/pcb/dsm2/DELTA_SIGMA HOST mac6-2.local PID 69045 PVERSION v2.3.42
+[TWgraphics_init]:fix buggy Apple X11 server mode on
+% Manufacturing grid set to 1E-5
+[twread_kicad]:read DELTA_SIGMA.unpnr successfully
+WARNING[twkicad::check_net_names]:Net index:1 with Net-(R1-Pad2) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:5 with Net-(U3A-+OUT) has not been labeled
+[twkicad::check_net_names]:Ignoring net index:6 with unconnected-(U4-NC-Pad5)
+	with no labels. Ok since it is unconnected.
+WARNING[twkicad::check_net_names]:Net index:7 with Net-(U3A--OUT) has not been labeled
+[twkicad::check_net_names]:Ignoring net index:9 with unconnected-(U4-NC-Pad11)
+	with no labels. Ok since it is unconnected.
+WARNING[twkicad::check_net_names]:Net index:10 with Net-(U4-Q) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:11 with Net-(J1-Pin_5) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:12 with D- has not been labeled
+WARNING[twkicad::check_net_names]:Net index:14 with Net-(J1-Pin_6) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:16 with Net-(R3-Pad2) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:18 with Vin- has not been labeled
+WARNING[twkicad::check_net_names]:Net index:19 with Net-(U3A--FB) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:20 with Net-(U3A-+IN) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:21 with Net-(U3A--IN) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:22 with Net-(U3A-+FB) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:23 with Net-(U6-MOD) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:24 with Net-(U2A--IN) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:25 with Net-(U2A-+IN) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:26 with Net-(U2A--FB) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:27 with Net-(U2A--OUT) has not been labeled
+ERROR[twkicad::check_net_names]:Net index:28 with Net-(U5-CLK) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:29 with Net-(U2A-+FB) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:30 with Net-(U2A-+OUT) has not been labeled
+WARNING[twkicad::check_net_names]:Net index:31 with Net-(U6-SET) has not been labeled
+smd_insts: C1 C10 C2 C3 C4 C5 C6 C7 C8 C9 L1 R1 R10 R11 R12 R13 R14 R15 R2 R3 R4 R5 R6 R7 R8 R9 U1 U2 U3 U4 U5 U6
+[write_par]:DELTA_SIGMA.par written.
+[twwrite_lib]:All cells present.  No dummy cells were needed in translation.
+[add_feedthru]:No feed thru cell found.  Adding a default one.
+WARNING[add_feedthru]:could not find a vertical or orthogonal layer for the feedthru layer.  Default to first layer:F.Cu
+
+[twwrite_lib]:DELTA_SIGMA.lib written.
+[write_ckt]:DELTA_SIGMA.ckt written.
+[write_con]:DELTA_SIGMA.con written.

@@ -1,0 +1,298 @@
+
+# #################################################
+# itranslate v2.3.42 executed on Thu Mar 26 15:06:53 2026
+set dsn DELTA_SIGMA
+# DELTA_SIGMA
+set pcb_size "6x9"
+# 6x9
+set pcb_size ""
+# 
+
+# 
+set pcb_type double-sided
+# double-sided
+set pcb_type single-sided
+# single-sided
+set pcb_units mm
+# mm
+set run_tw true
+# true
+
+# 
+twkicad::debug_draw on
+# on
+twkicad::debug off
+# off
+twkicad::debug on
+# on
+twkicad::pcb_type $pcb_type
+# 0
+twgraphics on
+# [TWgraphics_init]:fix buggy Apple X11 server mode on
+# 1
+twkicad::via_bloat 0.3
+# 0.3
+twkicad::read_design_files $dsn
+# Manufacturing grid set to 1E-5
+# [twread_kicad]:read DELTA_SIGMA.unpnr successfully
+# 
+twkicad::create_defaults
+# WARNING[twkicad::check_net_names]:Net index:1 with Net-(R1-Pad2) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:5 with Net-(U3A-+OUT) has not been labeled
+# [twkicad::check_net_names]:Ignoring net index:6 with unconnected-(U4-NC-Pad5)
+# 	with no labels. Ok since it is unconnected.
+# WARNING[twkicad::check_net_names]:Net index:7 with Net-(U3A--OUT) has not been labeled
+# [twkicad::check_net_names]:Ignoring net index:9 with unconnected-(U4-NC-Pad11)
+# 	with no labels. Ok since it is unconnected.
+# WARNING[twkicad::check_net_names]:Net index:10 with Net-(U4-Q) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:11 with Net-(J1-Pin_5) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:12 with D- has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:14 with Net-(J1-Pin_6) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:16 with Net-(R3-Pad2) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:18 with Vin- has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:19 with Net-(U3A--FB) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:20 with Net-(U3A-+IN) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:21 with Net-(U3A--IN) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:22 with Net-(U3A-+FB) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:23 with Net-(U6-MOD) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:24 with Net-(U2A--IN) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:25 with Net-(U2A-+IN) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:26 with Net-(U2A--FB) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:27 with Net-(U2A--OUT) has not been labeled
+# ERROR[twkicad::check_net_names]:Net index:28 with Net-(U5-CLK) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:29 with Net-(U2A-+FB) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:30 with Net-(U2A-+OUT) has not been labeled
+# WARNING[twkicad::check_net_names]:Net index:31 with Net-(U6-SET) has not been labeled
+# 
+
+# 
+set smd_insts [twkicad::list_smd_insts]
+# C1 C10 C2 C3 C4 C5 C6 C7 C8 C9 L1 R1 R10 R11 R12 R13 R14 R15 R2 R3 R4 R5 R6 R7 R8 R9 U1 U2 U3 U4 U5 U6
+set plane1_parts ""
+# 
+set plane2_parts [twkicad::subtract_list $smd_insts $plane1_parts]
+# C1 C10 C2 C3 C4 C5 C6 C7 C8 C9 L1 R1 R10 R11 R12 R13 R14 R15 R2 R3 R4 R5 R6 R7 R8 R9 U1 U2 U3 U4 U5 U6
+twmessage imsg null "smd_insts: $plane2_parts\n"
+# smd_insts: C1 C10 C2 C3 C4 C5 C6 C7 C8 C9 L1 R1 R10 R11 R12 R13 R14 R15 R2 R3 R4 R5 R6 R7 R8 R9 U1 U2 U3 U4 U5 U6
+
+# #################################################
+# itranslate v2.3.42 executed on Thu Mar 26 15:36:03 2026
+#!/bin/sh
+# 
+# This comment make this script an executable.  Do *NOT* delete \
+eval exec ${ICDIR}/bin/icos itranslate -v -do ${ICDIR}/bin/twkicad_results -- ${1+"$@"}
+# 
+
+# 
+#
+# 
+# $Id: twkicad_results,v 1.1 2020/07/22 14:16:46 bills Exp $
+# 
+# $Log: twkicad_results,v $
+# 
+# Revision 1.1  2020/07/22 14:16:46  bills
+# 
+# Initial revision
+# 
+#
+# 
+#
+# 
+
+# 
+# The defaults settings.
+# 
+global env
+# 
+global argv
+# 
+global icdirG
+# 
+if {[info exists env(TWDIR)]} {
+  set icdirG $env(TWDIR)
+} elseif {[info exists env(ICDIR)]} {
+  set icdirG $env(ICDIR)
+} else {
+  puts stderr "ERROR:cannot get TimberWolf/iTools environment variable:TWDIR/ICDIR"
+  exit 1
+}
+# /Users/billswartz7/version1/itools
+lappend auto_path $icdirG/tcl/common
+# /Users/billswartz7/version1/itools/tcl/libtcl /Users/billswartz7/version1/itools/tcl ./lib /Users/billswartz7/version1/itools/tcl/tcl8.6/lib /Users/billswartz7/version1/itools/tcl/translate /Users/billswartz7/version1/itools/tcl/common /Users/billswartz7/version1/itools/tcl/common
+
+# 
+set debug false
+# false
+set variable_die true
+# true
+
+# 
+
+# 
+set args $argv
+# -w 6291545 -v -do /Users/billswartz7/version1/itools/bin/twkicad_results DELTA_SIGMA
+set num_args [llength $args]
+# 6
+for {set i 0} {$i < $num_args} {incr i} {
+  set arg_el [lindex $args $i]
+  if {$arg_el == "-debug" } {
+    set debug 1
+    puts stdout "debug mode enabled.\n"
+    flush stdout
+  } elseif {$arg_el == "-fixed_die" } {
+    puts stdout "fixed die mode enabled.\n"
+    flush stdout
+    set variable_die 0
+  } elseif {$arg_el == "-help" } {
+    puts stderr "Usage:"
+    puts stderr "  twkicad_results \[-debug] \[-fixed_die]"
+    exit 0
+  } else {
+    set design $arg_el
+  }
+}
+# 
+
+# 
+twkicad_write::write_results $design $variable_die $debug
+# [TWgraphics_init]:fix buggy Apple X11 server mode on
+# WARNING[init_parasitics]:Capacitance values cannot be normalized.
+#    Timing driven placement cannot be performed only wire length minimization.
+#    If you intent to run timing driven placement, please check the .par
+#    file for layer capacitances equal to 0.0.
+# 
+# [readpar]:floorplan/detail/DELTA_SIGMA.par read.
+# no syntax errors in library:floorplan/detail/DELTA_SIGMA.lib
+# Library file:floorplan/detail/DELTA_SIGMA.lib read successfully.
+# 
+# 
+# [look_for_hints]:Found hints in <DELTA_SIGMA.stat> file
+# [look_for_hints]:Number of insts:36
+# [look_for_hints]:Number of nets :1000
+# [look_for_hints]:Number of gpins:143
+# 
+# no syntax problem in circuit file.
+# Circuit file:floorplan/detail/DELTA_SIGMA.ckt read successfully.
+# 
+# Constraint file:floorplan/detail/DELTA_SIGMA.con read successfully.
+# 
+# [twread_con]:floorplan/detail/DELTA_SIGMA.con read.
+# [icread_routing]:floorplan/detail/output/DELTA_SIGMA.rte read.
+# [twread_kicad]:read ../DELTA_SIGMA.unpnr successfully
+# 
+twwait
+# 
+exit
+
+# itranslate terminated normally at Thu Mar 26 15:36:07 2026
+# with no errors and 1 warning[s]
+
+# 
+
+# 
+# twfix_instance set D1 FIXED {0 FROM CENTER 0.0 FROM BOTTOM} CELL_ORIGIN C B ORIENT 0
+# 
+
+# 
+proc create_fdo {filename} {
+  set f [open $filename "w"]
+  if {$f == ""} {
+    twmessage errmsg create_fdo "could not open file:$filename\n"
+    return 
+  }
+  # Created by tcl2grand from decoder_signal.fdo on Tue Dec 15 12:44:33 2020
+  puts $f ""
+  puts $f ""
+  puts $f "twwait"
+  puts $f "twfloorplan"
+  puts $f "twwait"
+  puts $f ""
+  puts $f ""
+  close $f
+}
+# 
+
+# 
+
+# 
+
+# 
+if {$pcb_size != ""} {
+  set core_size [split $pcb_size x]
+  set xdim [lindex $core_size 0]
+  set ydim [lindex $core_size 1]
+  # Kicad is in mm
+  if {$pcb_units != "mm"} {
+    set w [expr 25.4 * $xdim]
+    set h [expr 25.4 * $ydim]
+  } else {
+    set w $xdim
+    set h $ydim
+  }
+  twboundary set core [list 0 0 $w $h]
+  puts stderr "core: [twboundary core]"
+}
+# 
+
+# 
+if {1} {
+  icbackup_directory timberwolf
+  cd timberwolf
+  twwrite_par ${dsn}.par
+  twwrite_lib ${dsn}.lib
+  twwrite_ckt ${dsn}.ckt
+
+  twwrite_con ${dsn}.con
+  if {$pcb_type == "double-sided"} {
+    set fp [open ${dsn}.con a]
+    if {$fp != ""} {
+      foreach part $plane1_parts {
+	puts $fp "PLANE $part RESTRICT 1"
+      }
+      foreach part $plane2_parts {
+	puts $fp "PLANE $part RESTRICT 2"
+      }
+      close $fp
+    }
+  }
+  twkicad::create_ddo ${dsn}.ddo -special_spacing 0.20 -max_width 0.8
+  create_fdo ${dsn}.fdo
+  # twkicad::create_fdo ${dsn}.fdo
+}
+# [write_par]:DELTA_SIGMA.par written.
+# [twwrite_lib]:All cells present.  No dummy cells were needed in translation.
+# [add_feedthru]:No feed thru cell found.  Adding a default one.
+# WARNING[add_feedthru]:could not find a vertical or orthogonal layer for the feedthru layer.  Default to first layer:F.Cu
+# 
+# [twwrite_lib]:DELTA_SIGMA.lib written.
+# [write_ckt]:DELTA_SIGMA.ckt written.
+# [write_con]:DELTA_SIGMA.con written.
+# 
+
+# 
+twgraphics_context design
+# design
+tweditobj sort
+# 
+set area [tweditobj bbox]
+# 129.945000 49.790000 155.700000 77.245000
+if {$area != ""} {
+  twgraphics_context frame $area
+}
+# 129.945000 49.790000 155.700000 77.245000
+twposition invert off
+# 0
+twredraw
+# 
+twwait
+# 
+
+# 
+if {$run_tw} {
+  ::twkicad::run_tw $dsn
+  twexit 0
+}
+
+# itranslate terminated abnormally at Thu Mar 26 15:36:09 2026
+# with 7 error[s] and 15 warning[s]
+
